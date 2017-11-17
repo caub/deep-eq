@@ -7,7 +7,15 @@
 ```js
 const eq = require('deep-eq');
 
-eq({ ok: 1 }, { ok: 2 });
+eq({foo: {ok: 1}}, {foo: {ok: 2}});
+```
+
+outputs: (colors not shown)
+```sh
+AssertionError:
+ → foo.ok:
+1 !== 2
+    at ....
 ```
 
 [npm-image]: https://img.shields.io/npm/v/deep-eq.svg?style=flat-square

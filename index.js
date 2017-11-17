@@ -9,10 +9,12 @@ const formatOptions = {
 const format = o => prettyFormat(o, formatOptions);
 
 class AssertionError extends Error {
-	constructor(diffs) {
-		super();
+	constructor(...args) {
+		super(...args);
 	}
 }
+
+const listStyle = chalk.blueBright('\n → ');
 
 const deepEqual = (o1, o2) => {
 	const diffs = [];
@@ -36,9 +38,8 @@ const deepEqual = (o1, o2) => {
 	};
 	deepEq(o1, o2);
 	if (!diffs.length) return;
-	const error = new Error('(AssertionError)\n  ' + diffs.join('\n  '));
-	// error.name = 'AssertionError';
-	throw error;
+
+	throw new AssertionError(listStyle + diffs.join(listStyle));
 };
 
 module.exports = deepEqual;
