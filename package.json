@@ -1,0 +1,38 @@
+{
+  "name": "deep-eq",
+  "version": "1.0.0",
+  "description": "deepEqual assertion with pretty diff",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc node test",
+    "coverage": "nyc report --reporter=lcov > coverage.lcov && codecov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caub/deep-eq.git"
+  },
+  "keywords": [
+    "assert",
+    "assertion",
+    "deep",
+    "equal",
+    "deep-equal"
+  ],
+  "author": "caub",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/caub/deep-eq/issues"
+  },
+  "homepage": "https://github.com/caub/deep-eq#readme",
+  "engines": {
+    "node": "6.9"
+  },
+  "dependencies": {
+    "chalk": "^2.3.0",
+    "pretty-format": "^21.2.1"
+  },
+  "devDependencies": {
+    "codecov": "^3.0.0",
+    "nyc": "^11.3.0"
+  }
+}
