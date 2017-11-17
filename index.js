@@ -14,7 +14,7 @@ class AssertionError extends Error {
 	}
 }
 
-const listStyle = chalk.blueBright('\n → ');
+const maybeInline = s => (s.includes('\n') ? '\n' : ' ') + s;
 
 const deepEqual = (o1, o2) => {
 	const diffs = [];
@@ -22,24 +22,24 @@ const deepEqual = (o1, o2) => {
 		const keys = new Set(Object.keys(o1).concat(Object.keys(o2)));
 		keys.forEach(key => {
 			const v1 = o1[key], v2 = o2[key];
-			const keyStr = chalk.blueBright(`${path.concat(key).join('.')}`);
+			const keyStr = path.concat(key).join('.')
 			if (v1 === undefined && v2 === undefined) {
 				// ignore 
 			} else if (v1 === undefined) {
-				diffs.push(`${keyStr}:\n${chalk.greenBright(format(v2))}`);
+				diffs.push(`${chalk.bold.red('\n → ' + keyStr)}:${maybeInline(chalk.magentaBright(format(v2)))}`);
 			} else if (v2 === undefined) {
-				diffs.push(`${keyStr}:\n${chalk.redBright(format(v1))}`);
+				diffs.push(`${chalk.bold.red('\n ← ' + keyStr)}:${maybeInline(chalk.magenta(format(v1)))}`);
 			} else if (v1 && typeof v1 === 'object' && v2 && typeof v2 === 'object') {
 				deepEq(v1, v2, path.concat(key));
 			} else if (v1 !== v2) {
-				diffs.push(`${keyStr}:\n${chalk.greenBright(format(v1))} !== ${chalk.redBright(format(v2))}`);
+				diffs.push(`${chalk.bold.red('\n ↔ ' + keyStr)}:${maybeInline(`${chalk.magenta(format(v1))} !== ${chalk.magentaBright(format(v2))}`)}`);
 			}
 		});
 	};
 	deepEq(o1, o2);
 	if (!diffs.length) return;
 
-	throw new AssertionError(listStyle + diffs.join(listStyle));
+	throw new AssertionError(diffs.join(''));
 };
 
 module.exports = deepEqual;

@@ -13,8 +13,7 @@ eq({foo: {ok: 1}}, {foo: {ok: 2}});
 outputs: (colors not shown)
 ```sh
 AssertionError:
- → foo.ok:
-1 !== 2
+ ↔ foo.ok: 1 !== 2
     at ....
 ```
 
