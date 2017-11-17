@@ -7,13 +7,14 @@
 ```js
 const eq = require('deep-eq');
 
-eq({foo: {ok: 1}}, {foo: {ok: 2}});
+eq({foo: {ok: 1}}, {foo: {ok: 2, u: 0}});
 ```
 
 outputs: (colors not shown)
 ```sh
 AssertionError:
  ↔ foo.ok: 1 !== 2
+ → foo.u: 0
     at ....
 ```
 
