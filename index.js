@@ -14,8 +14,6 @@ class AssertionError extends Error {
 	}
 }
 
-const maybeInline = s => (s.includes('\n') ? '\n' : ' ') + s;
-
 const deepEqual = (o1, o2) => {
 	const diffs = [];
 	const deepEq = (o1, o2, path = []) => {
@@ -26,13 +24,13 @@ const deepEqual = (o1, o2) => {
 			if (v1 === undefined && v2 === undefined) {
 				// ignore 
 			} else if (v1 === undefined) {
-				diffs.push(`${chalk.bold.red('\n → ' + keyStr)}:${maybeInline(chalk.magentaBright(format(v2)))}`);
+				diffs.push(`${chalk.bold.red('\n → ' + keyStr)}: ${chalk.magentaBright(format(v2))}`);
 			} else if (v2 === undefined) {
-				diffs.push(`${chalk.bold.red('\n ← ' + keyStr)}:${maybeInline(chalk.magenta(format(v1)))}`);
+				diffs.push(`${chalk.bold.red('\n ← ' + keyStr)}: ${chalk.magenta(format(v1))}`);
 			} else if (v1 && typeof v1 === 'object' && v2 && typeof v2 === 'object') {
 				deepEq(v1, v2, path.concat(key));
 			} else if (v1 !== v2) {
-				diffs.push(`${chalk.bold.red('\n ↔ ' + keyStr)}:${maybeInline(`${chalk.magenta(format(v1))} !== ${chalk.magentaBright(format(v2))}`)}`);
+				diffs.push(`${chalk.bold.red('\n ↔ ' + keyStr)}: ${chalk.magenta(format(v1))} !== ${chalk.magentaBright(format(v2))}`);
 			}
 		});
 	};
