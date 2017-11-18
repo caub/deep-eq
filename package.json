@@ -1,6 +1,6 @@
 {
   "name": "deep-eq",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "deepEqual assertion with pretty diff",
   "main": "index.js",
   "scripts": {
@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "codecov": "^3.0.0",
-    "nyc": "^11.3.0"
+    "nyc": "^11.3.0",
+    "strip-ansi": "^4.0.0"
   }
 }
