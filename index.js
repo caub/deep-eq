@@ -11,6 +11,7 @@ const format = o => prettyFormat(o, formatOptions);
 class AssertionError extends Error {
 	constructor(...args) {
 		super(...args);
+		Error.captureStackTrace(this, deepEqual);
 	}
 }
 

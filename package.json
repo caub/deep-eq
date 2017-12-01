@@ -1,6 +1,6 @@
 {
   "name": "deep-eq",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "deepEqual assertion with pretty diff",
   "main": "index.js",
   "files": ["index.js"],
