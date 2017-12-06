@@ -3,6 +3,9 @@
 [![build status][travis-image]][travis-url]
 [![coverage status][codecov-image]][codecov-url]
 
+## Why?
+- `assert.deepEqual` [doesn't display well](https://github.com/nodejs/node/issues/15696) the diff between 2 objects
+- simple: no transpiling needed
 
 ```js
 const eq = require('deep-eq');
