@@ -1,6 +1,6 @@
 {
   "name": "deep-eq",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "deepEqual assertion with pretty diff",
   "main": "index.js",
   "files": [
@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/caub/deep-eq#readme",
   "engines": {
-    "node": "6.9"
+    "node": ">=6"
   },
   "dependencies": {
     "chalk": "^2.3.0",
