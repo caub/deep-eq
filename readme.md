@@ -13,13 +13,14 @@ const eq = require('deep-eq');
 eq({foo: {ok: 1}}, {foo: {ok: 2, u: 0}});
 ```
 
-outputs: (colors not shown)
+outputs: (colors not shown, key and values (left/right) have different colors)
 ```sh
 AssertionError:
- ↔ foo.ok: 1 !== 2
- → foo.u: 0
-    at ....
+foo.ok 1	foo.ok 2
+        	foo.u 0
+    at ....stacktrace...
 ```
+
 
 [npm-image]: https://img.shields.io/npm/v/deep-eq.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/deep-eq

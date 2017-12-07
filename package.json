@@ -1,9 +1,11 @@
 {
   "name": "deep-eq",
-  "version": "1.2.2",
+  "version": "1.3.0",
   "description": "deepEqual assertion with pretty diff",
   "main": "index.js",
-  "files": ["index.js"],
+  "files": [
+    "index.js"
+  ],
   "scripts": {
     "test": "nyc node test",
     "coverage": "nyc report --reporter=lcov > coverage.lcov && codecov"

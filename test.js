@@ -1,22 +1,24 @@
 const strip = require('strip-ansi');
 const eq = require('.');
 
+process.stdout.columns = 80;
+
 try {
 	eq(null, undefined);
 } catch (e){
-	console.assert(strip(e.message).includes('null !== undefined'));
+	console.assert(strip(e.message).includes('null'));
 }
 
 try {
 	eq(null, 'lol');
 } catch (e){
-	console.assert(strip(e.message).includes(`null !== "lol"`));
+	console.assert(strip(e.message).includes(`null\t"lol"`));
 }
 
 try {
 	eq('foo', 'lol');
 } catch (e){
-	console.assert(strip(e.message).includes(`"foo" !== "lol"`));
+	console.assert(strip(e.message).includes(`"foo"\t"lol"`));
 }
 
 try {
@@ -57,10 +59,8 @@ try {
 		}
 	})
 } catch(e) { // todo full assert with chalk
-	console.assert(strip(e.message).includes(` ↔ foo.bar.qux.lolcat.bip.yup: 56.3 !== 56
- ← foo.bar.qux.mlop: Object {}
- → foo.bar.qux.mlep: Object {
-  "cool": "tes",
-  "flip": 878.964,
-}`));
+	console.assert(strip(e.message).includes(
+`….qux.lolcat.bip.yup 56.3	….qux.lolcat.bip.yup 56
+foo.bar.qux.mlop {}      	
+                         	foo.bar.qux.mlep {"cool": "tes", "fl…`));
 }
