@@ -40,14 +40,8 @@ const deepEqual = (o1, o2) => {
 		const keys = new Set(Object.keys(o1).concat(Object.keys(o2)));
 		keys.forEach(key => {
 			const v1 = o1[key], v2 = o2[key];
-			const keyStr = path.concat(key).join('.')
-			if (v1 === undefined && v2 === undefined) {
-				// ignore 
-			} else if (v1 === undefined) {
-				diffs.push(format({keyStr, v2}));
-			} else if (v2 === undefined) {
-				diffs.push(format({keyStr, v1}));
-			} else if (v1 && typeof v1 === 'object' && v2 && typeof v2 === 'object') {
+			const keyStr = path.concat(key).join('.');
+			if (v1 !== null && typeof v1 === 'object' && v2 !== null && typeof v2 === 'object') {
 				deepEq(v1, v2, path.concat(key));
 			} else if (v1 !== v2) {
 				diffs.push(format({keyStr, v1, v2}));

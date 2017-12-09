@@ -1,5 +1,5 @@
 const strip = require('strip-ansi');
-const eq = require('.');
+const eq = require('..');
 
 process.stdout.columns = 80;
 
@@ -25,6 +25,18 @@ try {
 	eq('lol', 'lol');
 } catch (e){
 	console.assert(false);
+}
+
+try {
+	eq(['lol'], ['lol']);
+} catch (e){
+	console.assert(false);
+}
+
+try {
+	eq(['lol','k'], ['lol', 'l']);
+} catch (e){
+	console.assert(strip(e.message).includes('1 "k"	1 "l"'));
 }
 
 try {
