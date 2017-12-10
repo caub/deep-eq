@@ -40,6 +40,47 @@ try {
 }
 
 try {
+	eq(new Set(['lol','k']), new Set(['lol', 'k']));
+} catch (e){
+	console.assert(false);
+}
+
+try {
+	eq(new Set(['lol','k']), new Set(['lol', 'l']));
+} catch (e){
+	console.assert(strip(e.message).includes('Set {"lol", "k"}	Set {"lol", "l"}'));
+}
+
+try {
+	eq(new Map([['lol','k']]), new Map([['lol', 'k']]));
+} catch (e){
+	console.assert(false);
+}
+
+try {
+	eq(new Map([['lol','k']]), new Map([['lol', 'l']]));
+} catch (e){
+	console.assert(strip(e.message).includes('Map {"lol" => "k"}	Map {"lol" => "l"}'));
+}
+
+// cyclic tests
+try {
+	const o = {k: [1, 2]};
+	o.k.push(o);
+	eq(o, {k: [1, 2, o]});
+} catch (e){
+	console.log(false);
+}
+
+try {
+	const o = {k: [1, 2]};
+	o.k.push(o);
+	eq(o, {k: [1, 2, o, 5]});
+} catch (e){
+	console.assert(strip(e.message).includes('k.3 5'));
+}
+
+try {
 	eq({
 		foo: {
 			bar: {
